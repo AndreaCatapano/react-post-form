@@ -11,6 +11,15 @@ function App() {
     public: true
   });
 
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
   return (
     <div className="post-form-container">
       <h2>Crea un nuovo post</h2>
@@ -24,7 +33,7 @@ function App() {
             id="author"
             name="author"
             value={formData.author}
-            onChange=""
+            onChange={handleChange}
             required
           />
         </div>
@@ -36,7 +45,7 @@ function App() {
             id="title"
             name="title"
             value={formData.title}
-            onChange=""
+            onChange={handleChange}
             required
           />
         </div>
@@ -47,7 +56,7 @@ function App() {
             id="body"
             name="body"
             value={formData.body}
-            onChange=""
+            onChange={handleChange}
             required
           />
         </div>
@@ -58,7 +67,7 @@ function App() {
               type="checkbox"
               name="public"
               checked={formData.public}
-              onChange=""
+              onChange={handleChange}
             />
             Pubblica immediatamente
           </label>
