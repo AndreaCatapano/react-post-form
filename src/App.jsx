@@ -1,5 +1,8 @@
+import axios from 'axios';
 import { useState } from 'react'
 
+
+const url = "https://67c5b4f3351c081993fb1ab6.mockapi.io/api/posts"
 
 function App() {
 
@@ -20,12 +23,29 @@ function App() {
     }));
   };
 
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    axios.post(url, formData).then(res => {
+      console.log('Post creato con successo:', res.data);
+      setFormData({
+        author: '',
+        title: '',
+        body: '',
+        public: true
+      });
+
+    }).catch(error => {
+      console.error('Errore durante la creazione del post:', error);
+    });
+  };
+
   return (
     <div className="post-form-container">
       <h2>Crea un nuovo post</h2>
 
 
-      <form onSubmit="" className="post-form">
+      <form onSubmit={handleSubmit} className="post-form">
         <div className="form-group">
           <label htmlFor="author">Autore:</label>
           <input
