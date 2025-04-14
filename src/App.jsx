@@ -3,6 +3,14 @@ import { useState } from 'react'
 
 function App() {
 
+
+  const [formData, setFormData] = useState({
+    author: '',
+    title: '',
+    body: '',
+    public: true
+  });
+
   return (
     <div className="post-form-container">
       <h2>Crea un nuovo post</h2>
@@ -15,7 +23,7 @@ function App() {
             type="text"
             id="author"
             name="author"
-            value=""
+            value={formData.author}
             onChange=""
             required
           />
@@ -27,7 +35,7 @@ function App() {
             type="text"
             id="title"
             name="title"
-            value=""
+            value={formData.title}
             onChange=""
             required
           />
@@ -38,7 +46,7 @@ function App() {
           <textarea
             id="body"
             name="body"
-            value=""
+            value={formData.body}
             onChange=""
             required
           />
@@ -49,7 +57,7 @@ function App() {
             <input
               type="checkbox"
               name="public"
-              checked=""
+              checked={formData.public}
               onChange=""
             />
             Pubblica immediatamente
@@ -59,7 +67,7 @@ function App() {
         <button
           type="submit"
           className="submit-button"
-        >
+        > Aggiungi Elemento
         </button>
       </form>
     </div>
